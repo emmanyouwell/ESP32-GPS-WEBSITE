@@ -1,3 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap');
 @tailwind base;
+
+body {
+    background-color: #fff8f0;
+    opacity: 1;
+    background-image: radial-gradient(#ff7b00 1.9500000000000002px, #fff8f0 1.9500000000000002px);
+    background-size: 39px 39px;
+}
+
+.navbar-background {
+
+        --s: 140px; /* control the size*/
+        --c1: #170409;
+        --c2: #fd9330;
+        
+        --_g: #0000 52%,var(--c1) 54% 57%,#0000 59%; 
+        background: 
+         radial-gradient(farthest-side at -33.33% 50%,var(--_g)) 0 calc(var(--s)/2),
+         radial-gradient(farthest-side at 50% 133.33%,var(--_g)) calc(var(--s)/2) 0,
+         radial-gradient(farthest-side at 133.33% 50%,var(--_g)),
+         radial-gradient(farthest-side at 50% -33.33%,var(--_g)),
+         var(--c2);
+        background-size: calc(var(--s)/4.667) var(--s),var(--s) calc(var(--s)/4.667);
+
+}
+.ml15 {
+    font-weight: 800;
+    font-size: 3.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+  }
+  
+  .ml15 .word {
+    display: inline-block;
+    line-height: 1em;
+  }
+
 @tailwind components;
 @tailwind utilities;
