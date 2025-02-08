@@ -4,32 +4,49 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
-
 const server = http.createServer(app);
 const io = new Server(server, {
-    cors: {
-        origin: ["*","http://localhost:5173", "http://192.168.103.11"], // Change this to your frontend URL in production
-        methods: ["GET", "POST"]
-    },
-    transports: ["websocket", "polling"]  
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
 });
 
+app.use(express.json());
+app.use(cors());
+
+let latestLocation = { latitude: 0, longitude: 0 };
+
+// Receive location from ESP32
+app.post("/location", (req, res) => {
+  const { latitude, longitude } = req.body;
+  
+  if (latitude && longitude) {
+    latestLocation = { latitude, longitude };
+    console.log("Updated Location:", latestLocation);
+    
+    // Emit location to connected frontend clients
+    io.emit("locationUpdate", latestLocation);
+
+    res.json({ success: true, message: "Location updated" });
+  } else {
+    res.status(400).json({ success: false, message: "Invalid data" });
+  }
+});
+
+// Handle WebSocket connection
 io.on("connection", (socket) => {
-    console.log("A client connected:", socket.id);
-    socket.on("message", (data)=>{
-        io.emit("message", data);
-    })
-    socket.on("gpsData", (data) => {
-        console.log("Received GPS Data:", data);
-
-        // Broadcast to all clients
-        io.emit("gpsUpdate", data);
-    });
-
-    socket.on("disconnect", () => {
-        console.log("Client disconnected:", socket.id);
-    });
+  console.log("Client connected:", socket.id);
+  
+  // Send latest location when a new client connects
+  socket.emit("locationUpdate", latestLocation);
+  
+  socket.on("disconnect", () => {
+    console.log("Client disconnected");
+  });
 });
 
-server.listen(4001, () => console.log("Socket.io server running on port 4001"));
+const PORT = process.env.PORT || 4001;
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
