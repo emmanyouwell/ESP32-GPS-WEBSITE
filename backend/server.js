@@ -9,17 +9,20 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "*", // Change this to your frontend URL in production
+        origin: ["*","http://localhost:5173", "http://192.168.103.11"], // Change this to your frontend URL in production
         methods: ["GET", "POST"]
-    }
+    },
+    transports: ["websocket", "polling"]  
 });
 
 io.on("connection", (socket) => {
     console.log("A client connected:", socket.id);
-
+    socket.on("message", (data)=>{
+        io.emit("message", data);
+    })
     socket.on("gpsData", (data) => {
         console.log("Received GPS Data:", data);
-        
+
         // Broadcast to all clients
         io.emit("gpsUpdate", data);
     });

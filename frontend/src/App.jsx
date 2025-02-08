@@ -6,8 +6,12 @@ import logo1 from './assets/images/logo1-transparent.png'
 import logo3 from './assets/images/logo3-transparent.png'
 import { Typography } from "@material-tailwind/react";
 import anime from "animejs";
+import socket from "./socket";
 function App() {
   const textRef = useRef();
+  useEffect(()=>{
+    socket.emit("message", {data: "hello world"});
+  },[])
   useEffect(() => {
     anime.timeline()
       .add({

@@ -13,11 +13,13 @@
     "@heroicons/react": "^2.2.0",
     "@material-tailwind/react": "^2.1.10",
     "animejs": "^3.2.2",
+    "dotenv": "^16.4.7",
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
-    "react-router-dom": "^7.1.5"
+    "react-router-dom": "^7.1.5",
+    "socket.io-client": "^4.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
