@@ -51,10 +51,10 @@ function App() {
           <h1 className="text-3xl font-bold underline text-center mb-4 font-holtwood text-orange-600">Locate your bag!</h1>
           <MapComponent location={location}/>
         </div>
-        <div className="flex flex-col justify-center items-center">
+        {/* <div className="flex flex-col justify-center items-center">
             <Typography variant="h3" className="font-holtwood font-bold underline text-center mb-4 text-orange-600">About Us</Typography>
 
-        </div>
+        </div> */}
 
       </div>
 
