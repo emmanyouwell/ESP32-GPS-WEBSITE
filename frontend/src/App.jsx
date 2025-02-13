@@ -8,9 +8,16 @@ import { Typography } from "@material-tailwind/react";
 import anime from "animejs";
 import socket from "./socket";
 function App() {
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
   const textRef = useRef();
   useEffect(()=>{
-    socket.emit("message", {data: "hello world"});
+    socket.on("locationUpdate", (data) => {
+      console.log(data);
+      setLocation(data);
+    }); 
+    return () => {
+      socket.off("locationUpdate");
+    };
   },[])
   useEffect(() => {
     anime.timeline()
@@ -33,16 +40,16 @@ function App() {
           <h1 className="ml15 flex flex-col gap-10">
             <span className="word font-holtwood text-gray-800 hover:text-orange-600 transition-colors">iii</span>
             
-            <span className="word font-holtwood text-gray-800 hover:text-orange-600 transition-colors">entrep</span>
-            
             <span className="word font-holtwood text-gray-800 hover:text-orange-600 transition-colors">eapp</span>
+
+            <span className="word font-holtwood text-gray-800 hover:text-orange-600 transition-colors">entrep</span>
           </h1>
          
           
         </div>
         <div className="my-12">
           <h1 className="text-3xl font-bold underline text-center mb-4 font-holtwood text-orange-600">Locate your bag!</h1>
-          <MapComponent />
+          <MapComponent location={location}/>
         </div>
         <div className="flex flex-col justify-center items-center">
             <Typography variant="h3" className="font-holtwood font-bold underline text-center mb-4 text-orange-600">About Us</Typography>
