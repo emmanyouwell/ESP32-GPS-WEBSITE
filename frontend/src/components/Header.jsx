@@ -82,14 +82,14 @@ export function StickyNavbar() {
                         >
                             <span>Log In</span>
                         </Button> */}
-                        <Button
+                        {/* <Button
                             variant="gradient"
                             size="sm"
                             color="white"
                             className="hidden lg:inline-block"
                         >
                             <span>About Us</span>
-                        </Button>
+                        </Button> */}
                     </div>
                     <IconButton
                         variant="text"
@@ -132,14 +132,14 @@ export function StickyNavbar() {
             </div>
             <MobileNav open={openNav}>
                 {navList}
-                <div className="flex items-center gap-x-1">
+                {/* <div className="flex items-center gap-x-1">
                     <Button fullWidth variant="text" size="sm" className="">
                         <span>Log In</span>
                     </Button>
                     <Button fullWidth variant="gradient" size="sm" className="">
                         <span>Sign in</span>
                     </Button>
-                </div>
+                </div> */}
             </MobileNav>
         </Navbar>
 
