@@ -1,15 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { StickyNavbar } from "./components/Header";
 import MapComponent from "./components/Map";
 import logo2 from './assets/images/logo2-transparent.png'
-import logo1 from './assets/images/logo1-transparent.png'
-import logo3 from './assets/images/logo3-transparent.png'
-import { Typography } from "@material-tailwind/react";
 import anime from "animejs";
 import socket from "./socket";
 function App() {
   const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
-  const textRef = useRef();
   useEffect(()=>{
     socket.on("locationUpdate", (data) => {
       console.log(data);
@@ -51,10 +47,6 @@ function App() {
           <h1 className="text-3xl font-bold underline text-center mb-4 font-holtwood text-orange-600">Locate your bag!</h1>
           <MapComponent location={location}/>
         </div>
-        {/* <div className="flex flex-col justify-center items-center">
-            <Typography variant="h3" className="font-holtwood font-bold underline text-center mb-4 text-orange-600">About Us</Typography>
-
-        </div> */}
 
       </div>
 

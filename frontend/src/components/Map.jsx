@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import osm from './osm-providers'
 import iconMarker from '../assets/images/marker.png'
+import PropTypes from 'prop-types'
 const markerIcon = new L.Icon({
     iconUrl: iconMarker,
     iconSize: [60, 70],
@@ -12,6 +13,7 @@ const markerIcon = new L.Icon({
     popupAnchor: [3, -46]
 })
 const ZOOM_LEVEL = 20;
+
 const MapUpdater = ({ location }) => {
     const map = useMap();
 
@@ -70,4 +72,13 @@ const MapComponent = ({ location }) => {
     )
 }
 
+MapUpdater.propTypes = {
+    location: PropTypes.object
+}
+AdjustedCircle.propTypes = {
+    location: PropTypes.object
+}
+MapComponent.propTypes = {
+    location: PropTypes.object
+}
 export default MapComponent

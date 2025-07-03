@@ -3,14 +3,9 @@ import {
     Navbar,
     MobileNav,
     Typography,
-    Button,
     IconButton,
-    Card,
 } from "@material-tailwind/react";
-
-import logo1 from '../assets/images/logo1.png'
 import logo2 from '../assets/images/logo2.png'
-import logo3 from '../assets/images/logo3.png'
 
 export function StickyNavbar() {
     const [openNav, setOpenNav] = React.useState(false);
@@ -132,14 +127,6 @@ export function StickyNavbar() {
             </div>
             <MobileNav open={openNav}>
                 {navList}
-                {/* <div className="flex items-center gap-x-1">
-                    <Button fullWidth variant="text" size="sm" className="">
-                        <span>Log In</span>
-                    </Button>
-                    <Button fullWidth variant="gradient" size="sm" className="">
-                        <span>Sign in</span>
-                    </Button>
-                </div> */}
             </MobileNav>
         </Navbar>
 
